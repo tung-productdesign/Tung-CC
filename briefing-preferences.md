@@ -27,14 +27,11 @@
 - **分隔線**：每則項目之間用細線分隔，不使用大量留白色塊。
 - 「今日內容較少」等提示用素色文字說明，不要用醒目的黃色警示框。
 
-## 技術注意事項：避免 Gmail 深色模式自動反轉配色（2026-09-23）
-第一版深色主題信件在 Gmail 手機 App 出現「淺色模式顯示黑底（正常，符合設計）、但深色模式卻顯示白底（被 Gmail 自動反轉）」的問題。原因是 Gmail 的自動深色模式會判斷信件未宣告配色支援，強制幫「看似為淺色模式設計」的信件做反轉。
+## 技術注意事項：不要加 color-scheme meta tag（2026-09-23 更新，已推翻先前結論）
+曾嘗試在 `<head>` 加入 `<meta name="color-scheme" content="only light">` 與 `<meta name="supported-color-schemes" content="only light">` 想鎖定深色配色，但使用者確認這反而讓配色顯示錯誤。使用者確認「不含這兩個 meta tag」的版本（純 inline style，body 直接寫 `background-color:#0f0f13` 等深色值，`<head>` 只有 charset + viewport + title）才是正確顯示的版本。
 
-**修正方式：在 `<head>` 加入以下兩個 meta tag，鎖定信件永遠依照撰寫的顏色顯示，不受收件人裝置深色/淺色模式影響：**
-```html
-<meta name="color-scheme" content="only light">
-<meta name="supported-color-schemes" content="only light">
-```
-往後每次產生 Email HTML，務必在 `<head>` 加入這兩行（放在 `<title>` 之前即可），否則深色主題會在收件人開啟裝置深色模式時被反轉成淺色。
+**結論：往後產生 Email HTML，`<head>` 內不要加任何 color-scheme / supported-color-schemes meta tag，只保留 charset、viewport、title。全部顏色維持 inline style 直接寫死深色值即可。**
+
+若未來又出現配色被反轉的回報，不要再自行加 meta tag 猜測修正，先跟使用者確認具體是哪個信箱/裝置/模式下出錯，再處理。
 
 _最後更新：2026-09-23_
