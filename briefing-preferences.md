@@ -27,11 +27,32 @@
 - **分隔線**：每則項目之間用細線分隔，不使用大量留白色塊。
 - 「今日內容較少」等提示用素色文字說明，不要用醒目的黃色警示框。
 
-## 技術注意事項：不要加 color-scheme meta tag（2026-09-23 更新，已推翻先前結論）
-曾嘗試在 `<head>` 加入 `<meta name="color-scheme" content="only light">` 與 `<meta name="supported-color-schemes" content="only light">` 想鎖定深色配色，但使用者確認這反而讓配色顯示錯誤。使用者確認「不含這兩個 meta tag」的版本（純 inline style，body 直接寫 `background-color:#0f0f13` 等深色值，`<head>` 只有 charset + viewport + title）才是正確顯示的版本。
+## 技術定案：配色改為「跟隨裝置淺色/深色模式自動切換」（2026-09-23 最終結論）
+歷經三次錯誤嘗試才定案，記錄如下避免重蹈覆轍：
+1. 第一版純深色 inline style（無 meta tag）→ 手機 Gmail App 深色模式下背景被自動反轉成白底。
+2. 加上 `<meta name="color-scheme" content="only light">` 想鎖定深色 → 使用者確認**這個 meta tag 本身就是造成錯誤顯示的原因**，拿掉後也沒有變好。
+3. 拿掉 meta tag 回到純 inline dark style → 手機深色模式下仍是白底/淺色（證明問題出在 Gmail 自己的深色模式引擎會忽略/覆蓋 inline dark 顏色，不是 meta tag 的問題），且桌面網頁淺色模式下卻整封變黑底，深淺邏輯完全不一致。
 
-**結論：往後產生 Email HTML，`<head>` 內不要加任何 color-scheme / supported-color-schemes meta tag，只保留 charset、viewport、title。全部顏色維持 inline style 直接寫死深色值即可。**
+**使用者最終確認的正確方向：不要試圖強制固定深色，而是讓信件「跟隨 Gmail/裝置目前的淺色或深色模式」自動切換**（淺色模式 = 白底深字，深色模式 = 深底淺字）。技術做法：
+- `<head>` 加入 `<meta name="color-scheme" content="light dark">` 與 `<meta name="supported-color-schemes" content="light dark">`。
+- 每個需要隨模式變色的元素同時給：(a) inline style 寫淺色版數值（預設/fallback），(b) 一個對應的 class（如 `bgpage`、`bgcard`、`txttitle`、`txtbody`、`txtmuted`、`txtinsight`、`txtlink`、`txthighlight`、`txtfooter`、`divider`）。
+- `<head>` 內用 `<style>` 區塊，在 `@media (prefers-color-scheme: dark) { ... }` 裡對每個 class 用 `!important` 覆寫成深色版數值。
+- 額外加上 Gmail 專屬的深色模式判斷選擇器 `[data-ogsc]`（Gmail 會在自己判定要套用深色模式時，在元素上標記這個屬性），同樣針對每個 class 覆寫成深色版數值，當作 Gmail 自己引擎的雙重保險（純 `prefers-color-scheme` media query 在部分 Gmail 介面不一定會生效）。
 
-若未來又出現配色被反轉的回報，不要再自行加 meta tag 猜測修正，先跟使用者確認具體是哪個信箱/裝置/模式下出錯，再處理。
+**配色數值（淺色 / 深色）：**
+- 頁面背景 `bgpage`：`#ffffff` / `#0f0f13`
+- 重點框背景 `bgcard`：`#fdf1e2` / `#2a2015`（左邊框固定 `#e08a4c` 兩種模式都適用，不需切換）
+- 標題文字 `txttitle`：`#1a1a2e` / `#f5f5f7`
+- 內文文字 `txtbody`：`#444444` / `#c7c7cf`
+- 次要/meta 文字 `txtmuted`：`#888888` / `#8a8a93`
+- 💡 PM 意義文字 `txtinsight`：`#6b4a2a` / `#e8dcc8`
+- 連結文字 `txtlink`：`#3b5bdb` / `#b9b6f5`
+- 重點框內文字 `txthighlight`：`#4a3520` / `#f0e6da`
+- 頁尾註記文字 `txtfooter`：`#999999` / `#6b6b73`
+- 分隔線 `divider`（border-top）：`#e5e5e5` / `#2a2a30`
+
+往後產生 Email HTML 一律採用此「淺色 inline 預設 + class + media query/data-ogsc 深色覆寫」架構，不要再嘗試「只做深色、強制不隨模式變化」的方向（已證實在 Gmail 各介面上不可靠）。
+
+若使用者之後回報仍有顯示異常，先問清楚是哪個裝置/App、當下系統是淺色還是深色模式、看到的實際顏色，不要再自行盲猜第四種修法。
 
 _最後更新：2026-09-23_
