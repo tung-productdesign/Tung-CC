@@ -19,3 +19,16 @@
 - 2026-09-23 | 🤖 | OpenAI launches GPT-6 Sol and GPT-6 Luna | https://openai.com/index/introducing-gpt-6-sol-and-luna/ | gpt-6-sol-luna-launch
 - 2026-09-23 | 🤖 | Alibaba unveils Zhenwu V900 AI chip + trillion-parameter model plans | https://fortune.com/2026/09/22/alibaba-powerful-ai-chip-xi-trump-us/ | alibaba-zhenwu-v900
 - 2026-09-23 | 🤖 | Xiaomi open-sources MiMo-V2.6 model family | https://siliconangle.com/2026/09/22/xiaomi-introduces-mimo-v2-6-series-open-source-ai-model-family/ | xiaomi-mimo-v2.6
+- 2026-09-24 | 🛠️ | Anthropic launches Claude Marketplace | https://claude.com/platform/marketplace | anthropic-claude-marketplace-launch
+- 2026-09-24 | 🛠️ | Amazon opens Seller Central tools to outside AI agents (Claude + Quick) | https://www.geekwire.com/2026/amazon-opens-its-seller-tools-to-outside-ai-agents-starting-with-anthropics-claude/ | amazon-selling-partner-plugin-claude-quick
+- 2026-09-24 | 🛠️ | Meta VR Glasses unveiled at Connect 2026 ($1,299) | https://www.uploadvr.com/meta-vr-glasses-officially-announced-connect-2026/ | meta-vr-glasses-connect-2026
+- 2026-09-24 | 🛠️ | Ray-Ban Meta Audio camera-free AI glasses ($349) | https://techcrunch.com/2026/09/23/meta-introduces-camera-free-ai-glasses/ | rayban-meta-audio-camera-free-glasses
+- 2026-09-24 | 🛠️ | Meta Muse Charm pocket AI-companion device | https://runtimewire.com/article/meta-announced-its-project-charm-keychain-at-connect | meta-muse-charm-device
+- 2026-09-24 | 📊 | Advanced AI evals guide (Hamel Husain / Shreya Shankar, Lenny's Newsletter) | https://www.lennysnewsletter.com/p/advanced-evals-how-to-find-and-fix | advanced-ai-evals-pm-framework-lennys
+- 2026-09-24 | 💰 | Ema raises $77M Series B (agentic AI employees) | https://techcrunch.com/2026/09/23/ema-raises-77m-as-ai-starts-eating-into-enterprise-software-and-services/ | ema-77m-series-b-agentic-employees
+- 2026-09-24 | 💰 | Bessemer Venture Partners closes $5.75B across two new AI funds | https://techcrunch.com/2026/09/23/vc-firm-bessemer-now-has-another-5-75b-to-invest-in-what-else-ai/ | bessemer-575b-two-ai-funds
+- 2026-09-24 | 💰 | Bird.com raises $450M debt financing, pivots to AI-agent communications infra | https://www.bloomberg.com/news/articles/2026-09-23/messaging-firm-bird-raises-450-million-in-jpmorgan-backed-debt | bird-450m-debt-ai-agent-infrastructure
+- 2026-09-24 | 💰 | Enveda raises $311M Series E, doubles valuation to $2B (AI drug discovery) | https://techcrunch.com/2026/09/23/enveda-secures-311m-to-bring-more-nature-derived-ai-drugs-into-clinical-trials/ | enveda-311m-series-e-ai-drugs
+- 2026-09-24 | 💰 | Brahma AI raises $150M at $2B valuation (enterprise AV "AI OS") | https://www.business-standard.com/markets/capital-market-news/brahma-ai-receives-equity-funding-of-150-million-led-by-multiples-alternate-asset-management-126092300180_1.html | brahma-ai-150m-2b-valuation
+- 2026-09-24 | 💰 | Tekever raises $580M Series D first close at $6.4B valuation (AI drones) | https://www.cnbc.com/2026/09/23/ai-drone-maker-ukraine-war-defense-tech.html | tekever-580m-series-d-ai-drones
+- 2026-09-24 | 🤖 | Claude autonomously discovers novel CRISPR-like enzyme system (ART) | https://www.anthropic.com/news/claude-discovers-novel-enzyme-system | anthropic-claude-art-enzyme-discovery
